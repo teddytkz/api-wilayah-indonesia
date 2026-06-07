@@ -1,0 +1,266 @@
+[{
+  "_id": {
+    "$oid": "6a252093a801669415fb3539"
+  },
+  "id": "11",
+  "name": "ACEH"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb353a"
+  },
+  "id": "12",
+  "name": "SUMATERA UTARA"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb353b"
+  },
+  "id": "13",
+  "name": "SUMATERA BARAT"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb353c"
+  },
+  "id": "14",
+  "name": "RIAU"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb353d"
+  },
+  "id": "15",
+  "name": "JAMBI"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb353e"
+  },
+  "id": "16",
+  "name": "SUMATERA SELATAN"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb353f"
+  },
+  "id": "17",
+  "name": "BENGKULU"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb3540"
+  },
+  "id": "18",
+  "name": "LAMPUNG"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb3541"
+  },
+  "id": "19",
+  "name": "KEPULAUAN BANGKA BELITUNG"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb3542"
+  },
+  "id": "21",
+  "name": "KEPULAUAN RIAU"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb3543"
+  },
+  "id": "31",
+  "name": "DKI JAKARTA"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb3544"
+  },
+  "id": "32",
+  "name": "JAWA BARAT"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb3545"
+  },
+  "id": "33",
+  "name": "JAWA TENGAH"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb3546"
+  },
+  "id": "34",
+  "name": "DI YOGYAKARTA"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb3547"
+  },
+  "id": "35",
+  "name": "JAWA TIMUR"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb3548"
+  },
+  "id": "36",
+  "name": "BANTEN"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb3549"
+  },
+  "id": "51",
+  "name": "BALI"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb354a"
+  },
+  "id": "52",
+  "name": "NUSA TENGGARA BARAT"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb354b"
+  },
+  "id": "53",
+  "name": "NUSA TENGGARA TIMUR"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb354c"
+  },
+  "id": "61",
+  "name": "KALIMANTAN BARAT"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb354d"
+  },
+  "id": "62",
+  "name": "KALIMANTAN TENGAH"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb354e"
+  },
+  "id": "63",
+  "name": "KALIMANTAN SELATAN"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb354f"
+  },
+  "id": "64",
+  "name": "KALIMANTAN TIMUR"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb3550"
+  },
+  "id": "65",
+  "name": "KALIMANTAN UTARA"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb3551"
+  },
+  "id": "71",
+  "name": "SULAWESI UTARA"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb3552"
+  },
+  "id": "72",
+  "name": "SULAWESI TENGAH"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb3553"
+  },
+  "id": "73",
+  "name": "SULAWESI SELATAN"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb3554"
+  },
+  "id": "74",
+  "name": "SULAWESI TENGGARA"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb3555"
+  },
+  "id": "75",
+  "name": "GORONTALO"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb3556"
+  },
+  "id": "76",
+  "name": "SULAWESI BARAT"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb3557"
+  },
+  "id": "81",
+  "name": "MALUKU"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb3558"
+  },
+  "id": "82",
+  "name": "MALUKU UTARA"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb3559"
+  },
+  "id": "91",
+  "name": "PAPUA BARAT"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb355a"
+  },
+  "id": "92",
+  "name": "PAPUA BARAT DAYA"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb355b"
+  },
+  "id": "94",
+  "name": "PAPUA"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb355c"
+  },
+  "id": "95",
+  "name": "PAPUA SELATAN"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb355d"
+  },
+  "id": "96",
+  "name": "PAPUA TENGAH"
+},
+{
+  "_id": {
+    "$oid": "6a252093a801669415fb355e"
+  },
+  "id": "97",
+  "name": "PAPUA PEGUNUNGAN"
+}]
