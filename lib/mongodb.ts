@@ -1,18 +1,30 @@
 import { MongoClient, type Db } from 'mongodb'
 
-const uri = process.env.MONGODB_URI
 const dbName = process.env.MONGODB_DB || 'wilayah-ri'
 
-if (!uri) throw new Error('MONGODB_URI is not defined in environment variables')
+const uris = [
+  process.env.MONGODB_URI,
+  process.env.MONGODB_URI_SECOND,
+].filter((uri): uri is string => !!uri)
 
-const globalWithMongo = global as typeof global & { _mongoClientPromise?: Promise<MongoClient> }
+if (uris.length === 0) throw new Error('MONGODB_URI is not defined in environment variables')
 
-if (!globalWithMongo._mongoClientPromise) {
-  const client = new MongoClient(uri)
-  globalWithMongo._mongoClientPromise = client.connect()
+type GlobalWithMongo = typeof global & {
+  _mongoClientPromises?: Promise<MongoClient>[]
+  _mongoRoundRobinIndex?: number
 }
 
-export async function getDb(): Promise<Db> {
-  const client = await globalWithMongo._mongoClientPromise!
-  return client.db(dbName)
+const g = global as GlobalWithMongo
+
+if (!g._mongoClientPromises) {
+  g._mongoClientPromises = uris.map((uri) => new MongoClient(uri).connect())
+  g._mongoRoundRobinIndex = 0
+}
+
+export async function getDb(): Promise<{ db: Db; server: 'primary' | 'secondary' }> {
+  const promises = g._mongoClientPromises!
+  const index = g._mongoRoundRobinIndex! % promises.length
+  g._mongoRoundRobinIndex = index + 1
+  const client = await promises[index]
+  return { db: client.db(dbName), server: index === 0 ? 'primary' : 'secondary' }
 }

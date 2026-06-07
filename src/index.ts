@@ -9,13 +9,14 @@ app.use('*', apiKeyMiddleware)
 
 app.get('/provinsi', async (c) => {
   try {
-    const db = await getDb()
+    const { db, server } = await getDb()
+    const start = Date.now()
     const provinces = await db
       .collection('provinces')
       .find({}, { projection: { _id: 0 } })
       .sort({ id: 1 })
       .toArray()
-    return c.json({ success: true, total: provinces.length, data: provinces })
+    return c.json({ success: true, server, 'time-db': Date.now() - start, total: provinces.length, data: provinces })
   } catch {
     return c.json({ success: false, message: 'Internal server error' }, 500)
   }
@@ -24,14 +25,15 @@ app.get('/provinsi', async (c) => {
 app.get('/kabupaten', async (c) => {
   try {
     const provinceId = c.req.query('province-id')
-    const db = await getDb()
+    const { db, server } = await getDb()
+    const start = Date.now()
 
     if (provinceId) {
       const doc = await db
         .collection('regencies')
         .findOne({ province_id: provinceId }, { projection: { _id: 0, data: 1 } })
       const data = (doc?.data as { id: string; name: string }[]) ?? []
-      return c.json({ success: true, total: data.length, data })
+      return c.json({ success: true, server, 'time-db': Date.now() - start, total: data.length, data })
     }
 
     const docs = await db
@@ -39,7 +41,7 @@ app.get('/kabupaten', async (c) => {
       .find({}, { projection: { _id: 0, data: 1 } })
       .toArray()
     const data = docs.flatMap((d) => d.data as { id: string; name: string }[])
-    return c.json({ success: true, total: data.length, data })
+    return c.json({ success: true, server, 'time-db': Date.now() - start, total: data.length, data })
   } catch {
     return c.json({ success: false, message: 'Internal server error' }, 500)
   }
@@ -48,14 +50,15 @@ app.get('/kabupaten', async (c) => {
 app.get('/kecamatan', async (c) => {
   try {
     const regencyId = c.req.query('regency-id')
-    const db = await getDb()
+    const { db, server } = await getDb()
+    const start = Date.now()
 
     if (regencyId) {
       const doc = await db
         .collection('districts')
         .findOne({ regency_id: regencyId }, { projection: { _id: 0, data: 1 } })
       const data = (doc?.data as { id: string; name: string }[]) ?? []
-      return c.json({ success: true, total: data.length, data })
+      return c.json({ success: true, server, 'time-db': Date.now() - start, total: data.length, data })
     }
 
     const docs = await db
@@ -63,7 +66,7 @@ app.get('/kecamatan', async (c) => {
       .find({}, { projection: { _id: 0, data: 1 } })
       .toArray()
     const data = docs.flatMap((d) => d.data as { id: string; name: string }[])
-    return c.json({ success: true, total: data.length, data })
+    return c.json({ success: true, server, 'time-db': Date.now() - start, total: data.length, data })
   } catch {
     return c.json({ success: false, message: 'Internal server error' }, 500)
   }
@@ -75,12 +78,13 @@ app.get('/desa', async (c) => {
     return c.json({ success: false, message: 'district-id query param is required' }, 400)
   }
   try {
-    const db = await getDb()
+    const { db, server } = await getDb()
+    const start = Date.now()
     const doc = await db
       .collection('villages')
       .findOne({ district_id: districtId }, { projection: { _id: 0, data: 1 } })
     const data = (doc?.data as { id: string; name: string }[]) ?? []
-    return c.json({ success: true, total: data.length, data })
+    return c.json({ success: true, server, 'time-db': Date.now() - start, total: data.length, data })
   } catch {
     return c.json({ success: false, message: 'Internal server error' }, 500)
   }
