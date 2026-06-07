@@ -28,13 +28,21 @@ app.get('/kabupaten', async (c) => {
   try {
     const provinceId = c.req.query('province-id')
     const db = await getDb()
-    const filter = provinceId ? { province_id: provinceId } : {}
-    const regencies = await db
+
+    if (provinceId) {
+      const doc = await db
+        .collection('regencies')
+        .findOne({ province_id: provinceId }, { projection: { _id: 0, data: 1 } })
+      const data = (doc?.data as { id: string; name: string }[]) ?? []
+      return c.json({ success: true, total: data.length, data })
+    }
+
+    const docs = await db
       .collection('regencies')
-      .find(filter, { projection: { _id: 0 } })
-      .sort({ id: 1 })
+      .find({}, { projection: { _id: 0, data: 1 } })
       .toArray()
-    return c.json({ success: true, total: regencies.length, data: regencies })
+    const data = docs.flatMap((d) => d.data as { id: string; name: string }[])
+    return c.json({ success: true, total: data.length, data })
   } catch {
     return c.json({ success: false, message: 'Internal server error' }, 500)
   }
@@ -44,13 +52,21 @@ app.get('/kecamatan', async (c) => {
   try {
     const regencyId = c.req.query('regency-id')
     const db = await getDb()
-    const filter = regencyId ? { regency_id: regencyId } : {}
-    const districts = await db
+
+    if (regencyId) {
+      const doc = await db
+        .collection('districts')
+        .findOne({ regency_id: regencyId }, { projection: { _id: 0, data: 1 } })
+      const data = (doc?.data as { id: string; name: string }[]) ?? []
+      return c.json({ success: true, total: data.length, data })
+    }
+
+    const docs = await db
       .collection('districts')
-      .find(filter, { projection: { _id: 0 } })
-      .sort({ id: 1 })
+      .find({}, { projection: { _id: 0, data: 1 } })
       .toArray()
-    return c.json({ success: true, total: districts.length, data: districts })
+    const data = docs.flatMap((d) => d.data as { id: string; name: string }[])
+    return c.json({ success: true, total: data.length, data })
   } catch {
     return c.json({ success: false, message: 'Internal server error' }, 500)
   }
@@ -63,12 +79,11 @@ app.get('/desa', async (c) => {
   }
   try {
     const db = await getDb()
-    const villages = await db
+    const doc = await db
       .collection('villages')
-      .find({ district_id: districtId }, { projection: { _id: 0 } })
-      .sort({ id: 1 })
-      .toArray()
-    return c.json({ success: true, total: villages.length, data: villages })
+      .findOne({ district_id: districtId }, { projection: { _id: 0, data: 1 } })
+    const data = (doc?.data as { id: string; name: string }[]) ?? []
+    return c.json({ success: true, total: data.length, data })
   } catch {
     return c.json({ success: false, message: 'Internal server error' }, 500)
   }
