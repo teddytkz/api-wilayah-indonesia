@@ -2,6 +2,7 @@
   "name": "api-wilayah-ri",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "bun --hot src/index.ts",
     "seed": "bun scripts/seed.ts"
