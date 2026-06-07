@@ -8,6 +8,6 @@
     "skipLibCheck": true,
     "types": ["node"]
   },
-  "include": ["api/**/*.ts", "lib/**/*.ts"],
+  "include": ["src/**/*.ts", "lib/**/*.ts"],
   "exclude": ["node_modules", "scripts"]
 }

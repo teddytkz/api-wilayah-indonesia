@@ -1,10 +1,7 @@
 import { Hono } from 'hono'
-import { handle } from '@hono/node-server/vercel'
 import { serve } from '@hono/node-server'
 import { getDb } from '../lib/mongodb'
 import { apiKeyMiddleware } from '../lib/apiKey'
-
-export const config = { runtime: 'nodejs' }
 
 const app = new Hono().basePath('/api/wilayah')
 
@@ -91,7 +88,7 @@ app.get('/desa', async (c) => {
 
 app.notFound((c) => c.json({ success: false, message: 'Not found' }, 404))
 
-export default handle(app)
+export default app
 
 if ((import.meta as { main?: boolean }).main) {
   const port = Number(process.env.PORT) || 3001
