@@ -6,3 +6,5 @@ out/
 *.log
 .env
 data/
+bun.lock
+bun.lockb

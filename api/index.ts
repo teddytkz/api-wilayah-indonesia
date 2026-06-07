@@ -1,5 +1,5 @@
 import { Hono } from 'hono'
-import { handle } from '@hono/node-server/vercel'
+import { handle } from 'hono/vercel'
 import { serve } from '@hono/node-server'
 import { getDb } from '../lib/mongodb'
 import { apiKeyMiddleware } from '../lib/apiKey'
@@ -88,6 +88,8 @@ app.get('/desa', async (c) => {
     return c.json({ success: false, message: 'Internal server error' }, 500)
   }
 })
+
+app.notFound((c) => c.json({ success: false, message: 'Not found' }, 404))
 
 export default handle(app)
 
