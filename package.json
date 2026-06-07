@@ -1,0 +1,21 @@
+{
+  "name": "api-wilayah-ri",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "bun --hot api/index.ts",
+    "seed": "bun scripts/seed.ts"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.12.0",
+    "hono": "^4.4.0",
+    "mongodb": "^6.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
