@@ -1,5 +1,5 @@
 import { Hono } from 'hono'
-import { handle } from 'hono/vercel'
+import { handle } from '@hono/node-server/vercel'
 import { serve } from '@hono/node-server'
 import { getDb } from '../lib/mongodb'
 import { apiKeyMiddleware } from '../lib/apiKey'
