@@ -21,10 +21,34 @@ if (!g._mongoClientPromises) {
   g._mongoRoundRobinIndex = 0
 }
 
-export async function getDb(): Promise<{ db: Db; server: 'primary' | 'secondary' }> {
+function serverLabel(index: number): 'primary' | 'secondary' {
+  return index === 0 ? 'primary' : 'secondary'
+}
+
+export async function query<T>(
+  fn: (db: Db) => Promise<T>
+): Promise<{ result: T; server: 'primary' | 'secondary' }> {
   const promises = g._mongoClientPromises!
   const index = g._mongoRoundRobinIndex! % promises.length
   g._mongoRoundRobinIndex = index + 1
-  const client = await promises[index]
-  return { db: client.db(dbName), server: index === 0 ? 'primary' : 'secondary' }
+
+  try {
+    const client = await promises[index]
+    const result = await fn(client.db(dbName))
+    return { result, server: serverLabel(index) }
+  } catch (err) {
+    if (promises.length < 2) throw err
+
+    // failover ke server lain
+    const fallbackIndex = (index + 1) % promises.length
+    const client = await promises[fallbackIndex]
+    const result = await fn(client.db(dbName))
+    return { result, server: serverLabel(fallbackIndex) }
+  }
+}
+
+// untuk seed script
+export async function getDb(): Promise<Db> {
+  const client = await g._mongoClientPromises![0]
+  return client.db(dbName)
 }
