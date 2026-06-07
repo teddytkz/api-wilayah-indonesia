@@ -1,7 +1,7 @@
 import { Hono } from 'hono'
 import { serve } from '@hono/node-server'
-import { getDb } from '../lib/mongodb'
-import { apiKeyMiddleware } from '../lib/apiKey'
+import { getDb } from '../lib/mongodb.js'
+import { apiKeyMiddleware } from '../lib/apiKey.js'
 
 const app = new Hono().basePath('/api/wilayah')
 
